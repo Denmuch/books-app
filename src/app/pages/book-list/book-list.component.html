@@ -1,0 +1,49 @@
+<div class="container-fluid">
+    <div class="table-responsive">
+        <table #table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Название</th>
+                    <th scope="col">Автор</th>
+                    <th scope="col">Год издания</th>
+                    <th scope="col">Дата добавления</th>
+                    <th scope="col">Комментарий</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let book of books;">
+                    <td>{{book.id}}</td>
+        
+                    <td>
+                        <span *ngIf="!edit(book)">{{book.name}}</span>
+                        <input *ngIf="edit(book)" type="text" [(ngModel)]="book.name" name="name">
+                    </td>
+                    
+                    <td>
+                        <span *ngIf="!edit(book)">{{book.author}}</span>
+                        <input *ngIf="edit(book)" type="text" [(ngModel)]="book.author" name="author">
+                    </td>
+                    <td>
+                        <span *ngIf="!edit(book)">{{book.year}}</span>
+                        <input *ngIf="edit(book)" type="text" [(ngModel)]="book.year" name="year">
+                    </td>
+        
+                    <td>
+                        <span *ngIf="!edit(book)">{{book.date}}</span>
+                        <input *ngIf="edit(book)" type="text" [(ngModel)]="book.date" name="date">
+                    </td>
+        
+                    <td>
+                        <p *ngIf="!edit(book)">{{book.comment}}</p>
+                        <textarea *ngIf="edit(book)" [(ngModel)]="book.comment" name="comment"></textarea>
+                    </td>
+                    <td><button type="button" class="btn btn-success" (click)="editBook(book)"><i class="fa fa-edit"></i></button></td>
+                    <td><button type="button" class="btn btn-warning" (click)="deleteBook(book)"><i class="fa fa-minus"></i></button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

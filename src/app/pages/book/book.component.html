@@ -1,0 +1,50 @@
+<div class="container">
+    <form #form="ngForm" (ngSubmit)="saveBook(form.value)">
+        <div class="d-flex justify-content-center m-5">
+            <label>Новая книга</label>
+        </div>
+    
+        <div class="form-group row">
+            <label class="col-xl-2 col-form-label">Название</label>
+            <div class="col-xl-10">
+                <input validate #name="ngModel" type="text" class="form-control" [(ngModel)]="book.name" name="name" required>
+            </div>
+            <show-errors [control]="name"></show-errors>
+        </div>
+    
+        <div class="form-group row">
+            <label class="col-xl-2 col-form-label">Автор</label>
+            <div class="col-xl-10">
+                <input validate #author="ngModel" type="text" class="form-control" [(ngModel)]="book.author" name="author" required>
+            </div>
+            <show-errors [control]="author"></show-errors>
+        </div>
+    
+        <div class="form-group row">
+            <label for="inputPassword" class="col-xl-2 col-form-label">Год издательства</label>
+            <div class="col-xl-10">
+                <input validate #year="ngModel" minlength="4" [textMask]="{mask: yearMask, guide: false}" type="text" class="form-control" [(ngModel)]="book.year" name="year" required>
+            </div>
+            <show-errors [control]="year"></show-errors>
+        </div>
+    
+        <div class="form-group row">
+            <label for="staticEmail" class="col-xl-2 col-form-label">Дата добавления</label>
+            <div class="col-xl-10">
+                <input validate #date="ngModel" [textMask]="{mask: dateMask, guide: false}"  type="text" class="form-control" [(ngModel)]="book.date" name="date" required>
+            </div>  
+            <show-errors [control]="date"></show-errors>
+        </div>
+    
+        <div class="form-group row">
+            <label for="staticEmail" class="col-xl-2 col-form-label">Отзыв</label>
+            <div class="col-xl-10">
+                <textarea class="form-control" [(ngModel)]="book.comment" name="comment" rows="3" maxlength="50" style="resize: none;"></textarea>
+            </div>
+        </div>
+    
+        <div class="d-flex justify-content-center mt-5">
+            <button [title]="buttonTitle" type="submit" class="btn btn-success" [disabled]="!form.valid">Сохранить</button>
+        </div>
+    </form>            
+</div>
